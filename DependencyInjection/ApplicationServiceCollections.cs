@@ -14,7 +14,6 @@ public static class ApplicationServiceCollections
         services.AddScoped<AuthService>();
 
         // services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
-
         services.AddSingleton<JwtTokenService>(provider =>
             new JwtTokenService(
                 configuration["Jwt:SecretKey"],
