@@ -32,7 +32,7 @@ public class User
     public DateTime CreatedAt { get; set; }
 
     // Navigation properties for relationships
-    public ICollection<Rentage> RentagesAsCustomer { get; set; }
-    public ICollection<Rentage> RentagesAsRenter { get; set; }
-    public ICollection<Movie> CreatedMovies { get; set; }
+    public IReadOnlyCollection<Rentage> RentagesAsCustomer { get; } = new List<Rentage>();
+    public IReadOnlyCollection<Rentage> RentagesAsRenter { get; } = new List<Rentage>();
+    public IReadOnlyCollection<Movie> CreatedMovies { get; } = new List<Movie>();
 }

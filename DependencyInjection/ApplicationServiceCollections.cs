@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using FilmVault.DTOs;
 using FilmVault.Repository;
 using FilmVault.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,13 +14,8 @@ public static class ApplicationServiceCollections
     {
         services.AddScoped<AuthService>();
 
-        // services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
-        services.AddSingleton<JwtTokenService>(provider =>
-            new JwtTokenService(
-                configuration["Jwt:SecretKey"],
-                configuration["Jwt:Issuer"],
-                configuration["Jwt:Audience"]
-            ));
+        services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
+        services.AddSingleton<JwtTokenService>();
 
         // Add authentication services
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
