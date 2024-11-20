@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using FilmVault.DTOs;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FilmVault.Service;
@@ -13,12 +14,12 @@ public class JwtTokenService
     private readonly string _audience;
     private readonly int _expirationMinutes;
 
-    public JwtTokenService(JwtSettings jwtSettings)
+    public JwtTokenService(IOptions<JwtSettings> jwtSettings)
     {
-        _secretKey = jwtSettings.SecretKey;
-        _issuer = jwtSettings.Issuer;
-        _audience = jwtSettings.Audience;
-        _expirationMinutes = jwtSettings.ExpirationMinutes;
+        _secretKey = jwtSettings.Value.SecretKey;
+        _issuer = jwtSettings.Value.Issuer;
+        _audience = jwtSettings.Value.Audience;
+        _expirationMinutes = jwtSettings.Value.ExpirationMinutes;
     }
 
     public string GenerateToken(int userId, string username, string role)

@@ -12,9 +12,10 @@ public static class ApplicationServiceCollections
     public static IServiceCollection AddApplicationServices(this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
+
         services.AddScoped<AuthService>();
 
-        services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
         services.AddSingleton<JwtTokenService>();
 
         // Add authentication services
