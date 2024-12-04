@@ -4,12 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace FilmVault.Controllers;
 
 [Authorize]
-public class MoviesController : BaseController<MoviesController>
+public class MoviesController(ILogger<MoviesController> logger) : BaseController<MoviesController>(logger)
 {
-    public MoviesController(ILogger<MoviesController> logger) : base(logger)
-    {
-    }
-
     [HttpPost]
     [Authorize(Roles = "Admin")]
     public IActionResult Create()
@@ -18,19 +14,20 @@ public class MoviesController : BaseController<MoviesController>
     }
 
     [HttpGet]
-    [Authorize(Roles = "Customer")]
     public IActionResult Read()
     {
         return Ok();
     }
 
     [HttpPatch]
+    [Authorize(Roles = "Admin")]
     public IActionResult Update()
     {
         return Ok();
     }
 
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     public IActionResult Delete()
     {
         return Ok();

@@ -17,7 +17,7 @@ public class User
         CreatedAt = DateTime.Now;
     }
 
-    [Key] public int Id { get; set; }
+    [Key] public int Id { get; } = 0;
 
     // TODO: make user name unique
     [Required] [MaxLength(40)] public string Username { get; set; } = string.Empty;

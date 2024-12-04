@@ -37,6 +37,6 @@ public class AuthService
         // Use the JwtTokenService to generate the token
         var jwtToken = _jwtTokenService.GenerateToken(user.Id, user.Username, user.Role);
 
-        return new LoginUserResponse(user.Id, user.Username, user.Username, user.Role, jwtToken);
+        return new LoginUserResponse(user.Id, user.Username, user.Role, jwtToken);
     }
 }

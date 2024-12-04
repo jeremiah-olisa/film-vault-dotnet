@@ -2,6 +2,7 @@
 using FilmVault.DTOs;
 using FilmVault.Repository;
 using FilmVault.Service;
+using FilmVault.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -36,7 +37,8 @@ public static class ApplicationServiceCollections
                 };
             });
 
-
+        services.AddHttpContextAccessor();
+        services.AddScoped<JwtSession>();
         return services;
     }
 }
